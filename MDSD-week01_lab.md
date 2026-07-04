@@ -1188,7 +1188,7 @@ class ProfilePage extends StatelessWidget {
 - [x] เพิ่ม Row ข้อมูลเพิ่มเติมอีก 2 แถว
 - [x] ลองเปลี่ยนสี Theme จาก `Colors.teal` เป็นสีอื่น
 
-> #### บันทึกผลการทดลอง
+**บันทึกผลการทดลอง**
 > <img width="1470" height="922" alt="image" src="https://github.com/user-attachments/assets/9d551291-6038-4cc6-a213-7b908cb6da7d" />
 
 ---
@@ -1274,7 +1274,7 @@ class ProfilePage extends StatelessWidget {
 
 6. นำโค้ดที่ได้ Copy ไปทดสอบใน Flutter Project
 
-> #### บันทึกผลการทดลอง
+**บันทึกผลการทดลอง**
 > <img width="1470" height="921" alt="image" src="https://github.com/user-attachments/assets/08300d2d-c836-4508-b766-949ca50bf1a3" />
 
 #### ทดลองที่ 3: Prompt Engineering
@@ -1294,7 +1294,12 @@ class ProfilePage extends StatelessWidget {
 ให้โค้ดที่สมบูรณ์และใช้งานได้เลย ไม่ต้อง Comment อธิบาย
 ```
 
+**บันทึกผลการทดลอง**
+> <img width="1470" height="923" alt="image" src="https://github.com/user-attachments/assets/6947c38d-701c-451b-bb22-d27acb4c5313" />
+
+
 > 🔍 **เปรียบเทียบ:** ผลลัพธ์จาก Prompt แบบ Simple vs Detailed ต่างกันอย่างไร?
+
 
 ---
 
