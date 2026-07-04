@@ -1189,7 +1189,7 @@ class ProfilePage extends StatelessWidget {
 - [x] ลองเปลี่ยนสี Theme จาก `Colors.teal` เป็นสีอื่น
 
 #### บันทึกผลการทดลอง
-<img width="1470" height="923" alt="image" src="https://github.com/user-attachments/assets/91d55e66-8159-4e12-811f-e32a6f96328a" />
+<img width="1470" height="922" alt="image" src="https://github.com/user-attachments/assets/9d551291-6038-4cc6-a213-7b908cb6da7d" />
 
 ---
 
