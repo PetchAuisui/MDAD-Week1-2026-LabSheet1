@@ -1754,9 +1754,9 @@ flutter run
 flutter doctor output:
 <img width="924" height="570" alt="image" src="https://github.com/user-attachments/assets/565221af-0a8b-422f-a9e5-a951e48ac8f3" />
 
-Flutter Version: 3.44.4
-Dart Version: 3.12.2
-Android SDK Version: 36.0.0
+- Flutter Version: 3.44.4
+- Dart Version: 3.12.2
+- Android SDK Version: 36.0.0
 
 ### 3.2 Screenshot ของ Flutter App
 
