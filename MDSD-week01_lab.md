@@ -1,4 +1,4 @@
-# 📱 ใบงานการทดลองที่ 1
+<img width="1470" height="922" alt="image" src="https://github.com/user-attachments/assets/b675edcb-94ea-4fe6-a93e-5cc271e746fb" /># 📱 ใบงานการทดลองที่ 1
 ## วิชา: การพัฒนาซอฟต์แวร์สำหรับอุปกรณ์เคลื่อนที่ (Mobile Software Development)
 ## หัวข้อ: ปฐมนิเทศ & แนะนำ Mobile Development — Flutter, Dart & Google AI Studio
 
@@ -1815,8 +1815,163 @@ MaterialApp
 
 ### 3.5 Screenshot ของ AI Chat App
 
+<img width="1470" height="921" alt="image" src="https://github.com/user-attachments/assets/c0b34f38-1a7a-4afa-8e6d-761805f6ad00" />
+<img width="1470" height="922" alt="image" src="https://github.com/user-attachments/assets/edd16e48-658b-4c7a-ad5a-05ffba2b19f1" />
+
+#### Source code
 ```
-[แนบ Screenshot ของ Gemini AI Chat ที่ทำงานได้]
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Student List',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        useMaterial3: true,
+      ),
+      home: const StudentListScreen(),
+    );
+  }
+}
+
+// 1. สร้าง Model สำหรับเก็บข้อมูลนักศึกษา
+class Student {
+  final String id;
+  final String name;
+  final String major;
+  final String imageUrl; // สำหรับใส่รูปโปรไฟล์จำลอง
+
+  Student({
+    required this.id,
+    required this.name,
+    required this.major,
+    required this.imageUrl,
+  });
+}
+
+class StudentListScreen extends StatelessWidget {
+  const StudentListScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    // 2. สร้างข้อมูลจำลองของนักศึกษา 5 คน
+    final List<Student> students = [
+      Student(
+        id: '65010101',
+        name: 'นายสมชาย รักเรียน',
+        major: 'วิทยาการคอมพิวเตอร์',
+        imageUrl: 'https://api.dicebear.com/7.x/adventurer/svg?seed=Somchai',
+      ),
+      Student(
+        id: '65010102',
+        name: 'นางสาวสมหญิง ขยันยิ่ง',
+        major: 'เทคโนโลยีสารสนเทศ',
+        imageUrl: 'https://api.dicebear.com/7.x/adventurer/svg?seed=Somying',
+      ),
+      Student(
+        id: '65010103',
+        name: 'นายกิตติพงษ์ เรียนดี',
+        major: 'วิศวกรรมซอฟต์แวร์',
+        imageUrl: 'https://api.dicebear.com/7.x/adventurer/svg?seed=Kittipong',
+      ),
+      Student(
+        id: '65010104',
+        name: 'นางสาวปิยะวรรณ สวยงาม',
+        major: 'วิทยาการคอมพิวเตอร์',
+        imageUrl: 'https://api.dicebear.com/7.x/adventurer/svg?seed=Piyawan',
+      ),
+      Student(
+        id: '65010105',
+        name: 'นายอนันต์ ยอดเยี่ยม',
+        major: 'เทคโนโลยีสารสนเทศ',
+        imageUrl: 'https://api.dicebear.com/7.x/adventurer/svg?seed=Anan',
+      ),
+    ];
+
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text(
+          'รายชื่อนักศึกษา',
+          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+        ),
+        centerTitle: true,
+        backgroundColor: Colors.blueAccent,
+      ),
+      body: Container(
+        color: Colors.grey[100], // สีพื้นหลังเทาอ่อนๆ
+        padding: const EdgeInsets.all(8.0),
+        child: ListView.builder(
+          itemCount: students.length,
+          itemBuilder: (context, index) {
+            final student = students[index];
+            return Card(
+              elevation: 3, // ความเงาของเงาใต้ Card
+              margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 4),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12), // ขอบมน
+              ),
+              child: ListTile(
+                contentPadding: const EdgeInsets.symmetric(
+                  vertical: 10,
+                  horizontal: 16,
+                ),
+                leading: CircleAvatar(
+                  radius: 30,
+                  backgroundColor: Colors.blue[100],
+                  child: Text(
+                    student.name.substring(3, 5), // ดึงอักษรแรกของชื่อมาแสดง
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.blueAccent,
+                    ),
+                  ),
+                ),
+                title: Text(
+                  student.name,
+                  style: const TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                subtitle: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const SizedBox(height: 4),
+                    Text('รหัสนักศึกษา: ${student.id}'),
+                    Text(
+                      'สาขา: ${student.major}',
+                      style: TextStyle(color: Colors.grey[600]),
+                    ),
+                  ],
+                ),
+                trailing: const Icon(
+                  Icons.arrow_forward_ios,
+                  size: 16,
+                  color: Colors.grey,
+                ),
+                onTap: () {
+                  // สามารถใส่ Action เมื่อกดที่รายชื่อนักศึกษาตรงนี้ได้
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text('เลือกคุณ ${student.name}')),
+                  );
+                },
+              ),
+            );
+          },
+        ),
+      ),
+    );
+  }
+}
 ```
 
 ---
