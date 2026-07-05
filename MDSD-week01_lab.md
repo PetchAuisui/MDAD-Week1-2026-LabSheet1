@@ -2077,10 +2077,10 @@ week01-flutter-intro-XXXXXXXX/
 ├── .gitignore                  (ต้องมี!)
 ├── pubspec.yaml
 ├── screenshots/
-│   ├── profile_card.png
-│   ├── ai_studio.png
-│   └── ai_chat.png
-└── LAB_REPORT.md              (ใบงานที่กรอกแล้ว)
+    ├── profile_card.png
+    ├── ai_studio.png
+    └── ai_chat.png
+
 ```
 
 ### Checklist ก่อนส่ง
