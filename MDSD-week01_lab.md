@@ -1215,13 +1215,6 @@ class ProfilePage extends StatelessWidget {
 > - ผลกระทบต่อ State (ข้อมูลในแอป): ข้อมูลเดิมจะหายทั้งหมด (Lose State) แอปพลิเคชันจะถูกรีเซ็ตและย้อนกลับไปแสดงผลที่หน้าแรกสุด (Home Page) เสมือนเพิ่งเปิดแอปพลิเคชันขึ้นมาใหม่
 > - ความเร็ว: ช้ากว่า Hot Reload เล็กน้อย (ใช้เวลาประมาณ 2 - 5 วินาที ขึ้นอยู่กับขนาดของโปรเจกต์)
 > - เหมาะสำหรับ: การแก้ไขฟังก์ชัน main(), โค้ดส่วนที่เป็นการตั้งค่าเริ่มต้นก่อนเปิดแอป (Initialization), การเปลี่ยนตัวแปรที่เป็นสถิต (Static/Global variables) หรือเมื่อแอปเกิดอาการ Error/ค้างจากลอจิกเดิม
-> 
-> | คุณสมบัติ | Hot Reload | Hot Restart |
-> | --- | --- | --- |
-> | การจัดการข้อมูล (State) | รักษาไว้ (อยู่หน้าเดิม ข้อมูลไม่หาย) | ทำลาย/รีเซ็ต (กลับไปเริ่มต้นหน้าแรก) |
-> | ความเร็วในการประมวลผล | เร็วที่สุด (< 1 วินาที) | ปานกลาง (2-5 วินาที) |
-> | ขอบเขตการโหลดโค้ด | โหลดเฉพาะโค้ด UI/Logic ใน Widget | โหลดโค้ดทั้งหมดใหม่ตั้งแต่ต้น |
-> | จังหวะที่ควรเลือกใช้ | แก้ไขดีไซน์ / แก้ไขคำ / จัดหน้าจอ | แก้ไขคำสั่งเริ่มต้น / แก้ไขตัวแปร Global / แอปค้าง |
 
 ---
 
@@ -1758,43 +1751,62 @@ flutter run
 
 ### 3.1 ผลการติดตั้ง Flutter
 
-```
 flutter doctor output:
-┌─────────────────────────────────────────────────────────┐
-│                                                         │
-│  วางผลลัพธ์จาก flutter doctor ที่นี่                    │
-│                                                         │
-└─────────────────────────────────────────────────────────┘
+<img width="924" height="570" alt="image" src="https://github.com/user-attachments/assets/565221af-0a8b-422f-a9e5-a951e48ac8f3" />
 
-Flutter Version: ___________________
-Dart Version: ______________________
-Android SDK Version: _______________
-```
+Flutter Version: 3.44.4
+Dart Version: 3.12.2
+Android SDK Version: 36.0.0
 
 ### 3.2 Screenshot ของ Flutter App
 
-```
-[แนบ Screenshot ของ Profile Card App ที่สร้าง]
-```
+<img width="1469" height="922" alt="image" src="https://github.com/user-attachments/assets/bb7c54dc-6c50-4b4c-b257-8a45dde5d193" />
+
 
 **Widget Tree ที่วาด:**
 
 ```
-(วาด Widget Tree ของแอปที่สร้างด้วยมือ)
-
 MaterialApp
-└── ?
-    └── ?
-        └── ...
+└── ProfilePage
+    └── Scaffold
+        ├── AppBar
+        │   └── Text ('Profile')
+        └── SingleChildScrollView
+            └── Padding
+                └── Column
+                    ├── SizedBox (height: 20)
+                    ├── CircleAvatar
+                    │   └── Icon (Icons.person)
+                    ├── SizedBox (height: 16)
+                    ├── Text ('Siwapat Auisui')
+                    ├── SizedBox (height: 8)
+                    ├── Text ('รหัสนักศึกษา: 67030351')
+                    ├── SizedBox (height: 24)
+                    ├── Card
+                    │   └── Padding
+                    │       └── Column
+                    │           ├── Row (คณะ) -> [Icon, SizedBox, Text, Expanded -> Text]
+                    │           ├── Divider
+                    │           ├── Row (มหาวิทยาลัย) -> [Icon, SizedBox, Text, Expanded -> Text]
+                    │           ├── Divider
+                    │           ├── Row (อีเมล) -> [Icon, SizedBox, Text, Expanded -> Text]
+                    │           ├── Divider
+                    │           ├── Row (วิชาที่ชอบ) -> [Icon, SizedBox, Text, Expanded -> Text]
+                    │           ├── Divider
+                    │           └── Row (เป้าหมาย) -> [Icon, SizedBox, Text, Expanded -> Text]
+                    ├── SizedBox (height: 24)
+                    └── ElevatedButton.icon
+                        ├── Icon (Icons.smart_toy)
+                        └── Text ('ทดลอง AI Chat')
 ```
 
 ### 3.3 การเปรียบเทียบ Hot Reload vs Hot Restart
 
 | รายการ | Hot Reload (r) | Hot Restart (R) |
 |---|---|---|
-| ความเร็ว | | |
-| State ถูก Reset? | | |
-| ใช้เมื่อไหร่ | | |
+| ความเร็ว |เร็วมาก (มักใช้เวลาไม่ถึง 1 วินาที) เพราะโหลดเฉพาะโค้ดส่วนที่แก้ไขเข้าไปในตู้คอนเทนเนอร์เดิม | ช้ากว่า Hot Reload (ใช้เวลาประมาณ 2-5 วินาที) เพราะต้องเคลียร์ระบบและรันแอปพลิเคชันใหม่ทั้งหมด |
+| State ถูก Reset? | ไม่ถูก Reset (รักษา State เดิมไว้) หน้าจอและข้อมูลที่ผู้ใช้พิมพ์หรือกดค้างไว้จะยังคงอยู่เหมือนเดิม | ถูก Reset ทั้งหมด (กลับไปเริ่มต้นใหม่) ข้อมูลในหน่วยความจำและหน้าจอปัจจุบันจะถูกล้างทิ้งเหมือนเพิ่งเปิดแอปครั้งแรก |
+| ใช้เมื่อไหร่ | ใช้ตอนปรับแต่ง UI, เปลี่ยนสี, เพิ่ม Widget เล็ก ๆ น้อย ๆ หรือแก้ไข Logic ภายในฟังก์ชันที่อยากเห็นผลทันทีโดยไม่ต้องกรอกข้อมูลใหม่ | ใช้ตอนแก้ไขฟังก์ชันส่วนที่มีผลระดับโครงสร้าง เช่น เปลี่ยนโค้ดในฟังก์ชัน main(), แก้ไขข้อมูลใน initState(), หรือเปลี่ยนระบบการจัดการ State (State Management) |
 
 ### 3.4 ผลการทดลอง Prompt Engineering
 
